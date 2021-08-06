@@ -1,0 +1,19 @@
+<main>    
+    <p>
+        Chose an exam to proceed!
+    </p>
+    <section class="exam-list">
+        <ol >
+            <li *ngFor='let exam of examList;let i = index'>
+               <a (click)="selectExam(exam)">{{exam.examName}} ({{exam.examCode}}) </a>
+            </li>
+        </ol>
+    </section>
+    <section class="selected-exam" *ngIf='selectedExam'>
+        <h3> {{selectedExam.examName}} ({{selectedExam.examCode}}) </h3>
+        <span>
+            Number Of Questions: {{selectedExam.numberOfQuestions}}
+        </span>
+        <button (click)="startExam()" class="exam-start-btn" title="Start Exan">Start Exam</button>
+    </section>
+</main>
