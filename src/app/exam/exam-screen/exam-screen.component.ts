@@ -21,6 +21,9 @@ export class ExamScreenComponent implements OnInit {
       selectedAnswer: "",
       optionList: []
     };
+  displayedQuestionList: Array<number> = [];
+  currentQuestionIndex: number = -1;
+  private numberOfQuestionToDisplay = 10;
 
   constructor(private route: ActivatedRoute, private qlSvc: QuestionlistService) { }
 
@@ -44,8 +47,26 @@ export class ExamScreenComponent implements OnInit {
   }
 
   displayQuestion() {
-    debugger
-    this.questionToDisplay = this.questionBank[1];
+    const randomNumber = this.pickQuestionToDisplay();
+    this.questionToDisplay = this.questionBank[randomNumber - 1];
+    this.currentQuestionIndex = this.displayedQuestionList.length;
+    console.log(randomNumber);
   }
+
+  pickQuestionToDisplay(): number {
+    let randomNumber = Math.floor(Math.random() * this.questionBank.length) + 1;
+    while (this.displayedQuestionList.indexOf(randomNumber) !== -1 && this.displayedQuestionList.length < this.numberOfQuestionToDisplay) {
+      randomNumber = Math.floor(Math.random() * this.questionBank.length) + 1;
+    }
+    this.displayedQuestionList.push(randomNumber);
+    return randomNumber;
+  }
+
+  nextQuestion() {
+    if (this.displayedQuestionList.length < this.numberOfQuestionToDisplay)
+      this.displayQuestion();
+  }
+
+  previousQuestion() { }
 
 }

@@ -1,15 +1,26 @@
 main {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: space-between;
-    position: relative;
-    p{
+    position       : relative;
+
+    p {
         font-size: 1.5rem;
     }
+
     section {
         img {
-            width: 140px;
+            width : 140px;
             height: inherit;
+        }
+
+        a {
+            font-size: 1.5rem;
+            display: inline-block;
+            margin: 0 0 1rem 1rem;
+            font-weight: 600;
+            text-shadow: 4px 4px 5px gray;
+            color: rgb(57, 57, 241);
         }
     }
 }
